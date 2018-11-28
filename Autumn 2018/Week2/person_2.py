@@ -1,4 +1,3 @@
-# TODO: fix
 from datetime import date
 
 
@@ -15,5 +14,10 @@ class Person:
         return "{} {}".format(self.first_name, self.last_name)
 
     def age(self):
-        age = date.today() - self.birth_date
-        return age.days.__int__() / 365
+        today = date.today()
+        age = today.year - self.birth_date.year
+
+        if (today.month, today.day) < (self.birth_date.month, self.birth_date.day):
+            return age - 1
+
+        return age
